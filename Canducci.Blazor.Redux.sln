@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Canducci.Blazor.Redux", "Canducci.Blazor.Redux\Canducci.Blazor.Redux.csproj", "{2512BECE-D0A8-42E2-B60E-188433053D8F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{FD972839-C82A-40B3-A01E-6FE2F0CEC747}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1", "BlazorApp1\BlazorApp1.csproj", "{0C07D056-1140-412A-A12D-0FDA6512860F}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{2512BECE-D0A8-42E2-B60E-188433053D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2512BECE-D0A8-42E2-B60E-188433053D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2512BECE-D0A8-42E2-B60E-188433053D8F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD972839-C82A-40B3-A01E-6FE2F0CEC747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD972839-C82A-40B3-A01E-6FE2F0CEC747}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD972839-C82A-40B3-A01E-6FE2F0CEC747}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD972839-C82A-40B3-A01E-6FE2F0CEC747}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0C07D056-1140-412A-A12D-0FDA6512860F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0C07D056-1140-412A-A12D-0FDA6512860F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C07D056-1140-412A-A12D-0FDA6512860F}.Release|Any CPU.ActiveCfg = Release|Any CPU

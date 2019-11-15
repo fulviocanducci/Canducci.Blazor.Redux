@@ -44,6 +44,7 @@
                 </td>
                 <td class="text-center">
                     <button @onclick="@(_ => Edit(item))" class="btn btn-block btn-info btn-sm">Update</button>
+                    <button @onclick="@(_ => Delete(item))" class="btn btn-block btn-info btn-sm">Remover</button>
                 </td>
             </tr>
             }
@@ -118,5 +119,10 @@ else
     private void Edit(Todo todo)
     {
         ListOfTodoStore.Dispatch(new ListOfTodoActionEdit(todo));
+    }
+
+    private void Delete(Todo todo)
+    {
+        ListOfTodoStore.Dispatch(new ListOfTodoActionDelete(todo));
     }
 }
