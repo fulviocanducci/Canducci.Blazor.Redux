@@ -1,0 +1,122 @@
+﻿@page "/listoftodos"
+@using BlazorApp1.Models
+@using BlazorApp1.Reducers
+@using Canducci.Blazor.Redux;
+@inject IListOfTodoStore ListOfTodoStore
+
+<h3>ListOfTodo</h3>
+
+<form @onsubmit="@Add">
+    <div class="row">
+        <div class="col-8 mb-3 mt-3">
+            <input type="text" name="description" @bind-value="@description" @bind-value:event="oninput" class="form-control form-control-sm" />
+        </div>
+        <div class="col-2 mb-3 mt-3">
+            <input type="checkbox" @bind-value="@done" checked="@done" class="form-check form-control-sm" />
+        </div>
+        <div class="col-2 mb-3 mt-3">
+            <button class="btn btn-primary btn-sm">Add</button>
+        </div>
+    </div>
+</form>
+
+@if (Todos != null && Todos.Count > 0)
+{
+    <table class="table table-bordered table-sm">
+        <thead>
+            <tr>
+                <th class="text-center">Id</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">Done</th>
+                <th class="text-center">...</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Todos)
+            {
+            <tr>
+                <td class="text-center">@item.Id</td>
+                <td class="text-left">
+                    <input type="text" @bind-value="@item.Description" class="form-control form-control-sm" />
+                </td>
+                <td class="text-center">
+                    <input type="checkbox" @bind-value="@item.Done" checked="@item.Done" />
+                </td>
+                <td class="text-center">
+                    <button @onclick="@(_ => Edit(item))" class="btn btn-block btn-info btn-sm">Update</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+        <tr>
+            <td class="text-sm-right" colspan="4">
+                <em><b>Count:</b> @Todos.Count</em>
+            </td>
+        </tr>
+    </table>
+}
+else
+{
+    <div class="mt-3">
+        <em>Nenhum item na lista  ...</em>
+    </div>   
+}
+
+<div>
+    @TodosToString
+</div>
+<br />
+
+@code {
+    public string description { get; set; }
+    public bool done { get; set; }
+    
+    public string TodosToString
+    {
+        get
+        {
+            return System.Text.Json.JsonSerializer.Serialize(Todos);
+        }
+    }
+
+    [Parameter]
+    public IReadOnlyList<Todo> Todos
+    {
+        get
+        {
+            return ListOfTodoStore.Value;
+        }
+        set
+        {
+            ListOfTodoStore.Dispatch(InitialValue(value));
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        
+    }
+
+    private IAction<IReadOnlyList<Todo>> InitialValue(IReadOnlyList<Todo> value)
+    {
+        return new ListOfTodoActionChangeInitialValue(value);
+    }
+
+    private void Add()
+    {
+        if (!string.IsNullOrEmpty(description))
+        {
+            ListOfTodoStore.Dispatch(new ListOfTodoActionAdd(new Todo
+            {
+                Id = Guid.NewGuid(),
+                Description = description,
+                Done = done
+            }));
+        }
+    }
+
+    private void Edit(Todo todo)
+    {
+        ListOfTodoStore.Dispatch(new ListOfTodoActionEdit(todo));
+    }
+}
